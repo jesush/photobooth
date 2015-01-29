@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div class="col-xs-8 col-xs-offset-2">
+
+<div class="video-camera-wrapper">
+
+<%= headshot_default_config(Rails.application.config.session_options[:key], headshot_capture_path, :on_complete => "customCameraHooks.onComplete") %> 
+
+<%= headshot_camera %>
+</div>
+<div class="video-camera-button">
+<%= headshot_snap_button('Take Profile Picture') %>
+</div>
+</div>
+<script language="JavaScript">
+  var customCameraHooks = {
+    onComplete: function(response) {
+      console.log("Server responded: " + response);
+      console.log(response);
+      headshot.reset();
+      window.location.href='/people/new'
+    }
+  };
+</script>
+
+	</div>
+</div>

@@ -1,0 +1,173 @@
+<%= form_for @person, :html => { :class => "form-horizontal person" } do |f| %>
+
+    <% if @person.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @person.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <hr>
+  <div class="form-group">
+    <div class="control-group">
+    <%= f.label :first_name, "First Name",:class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:first_name]) %>
+  </div>
+  <div class="control-group">
+  <%= f.label :last_name, "Last Name", :class => 'control-label' %>
+  <div class="controls">
+      <%= f.text_field :last_name, :class => 'form-control' %>
+  </div>
+    <%= error_span(@person[:last_name]) %>
+  </div>
+  <div class="control-group form-inline">
+    <%= f.label :dob, "Date Of Birth", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :dob, { :start_year => 1920, :end_year => 2015, :with_css_classes => true, :default => { year: 1990 } }, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:dob]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, "Email", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:email]) %>
+  </div>
+   <div class="control-group">
+    <%= f.label :phone_number, "Phone Number", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone_number, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:phone_number]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :preferred_contact_method, "Best Way To Reach You", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select "preferred_contact_method", "<option>Email</option><option>Phone</option>".html_safe, {}, { :class => "form-control" } %>
+
+    </div>
+    <%= error_span(@person[:preferred_contact_method]) %>
+  </div>
+
+  </div>
+  <hr>
+<div class="form-group">
+<div class="control-group">
+    <%= f.label :practicing_country, "Country You Practice Medicine In", :class => 'control-label' %>
+    <div class="controls">
+      <%= country_select("person", "practicing_country", { priority_countries: [ "CN", "AU", "HK","IN", "JP", "KR", "MY", "MM","NP", "SG", "CH", "TW", "TH", "US"] }, { class: 'form-control', data: { attribute: "value" } }) %>
+    </div>
+    <%= error_span(@person[:practicing_country]) %>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :medical_license_number, "Medical License Number", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :medical_license_number, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:medical_license_number]) %>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :current_institution, "Current Hospital/Institution", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :current_institution, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:current_institution]) %>
+  </div>
+
+  
+  <div class="control-group">
+    <%= f.label :medical_specialty, "Medical Specialty", :class => 'control-label' %>
+    <div class="controls medical-specialty-selector">
+      
+      <%= f.select "medical_specialty", "<option>Internal Medicine</option><option>Hematology</option><option>Hematology Oncology</option><option>Medical Oncology</option><option>Other</option>".html_safe, {}, { :class => "form-control medical-specialty" } %>
+    </div>
+    <%= error_span(@person[:medical_specialty]) %>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :current_office_address, "Current Office Address", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :current_office_address, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:current_office_address]) %>
+  </div>
+
+
+</div>
+
+<hr>
+
+<div class="form-group">
+
+  <div class="control-group">
+    <%= f.label :medical_school, "Which medical school did you attend? ", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :medical_school, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:medical_school]) %>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :medical_school_graduating_year, "What year did you graduate from medical school?", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :medical_school_graduating_year, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:medical_school_graduating_year]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :hospital_residency, "At which hospital did you complete your residency? ", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :hospital_residency, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:hospital_residency]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :residency_completion_date, "What year did you complete residency?", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :residency_completion_date, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:residency_completion_date]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :hospital_fellowship, "At which hospital did you complete your fellowship?", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :hospital_fellowship, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:hospital_fellowship]) %>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :fellowship_completion_year, "What year did you complete fellowship?", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fellowship_completion_year, :class => 'form-control' %>
+    </div>
+    <%= error_span(@person[:fellowship_completion_year]) %>
+  </div>
+</div>
+
+
+  <br>
+  <%= f.submit  "Next", :class => 'btn center-block btn-primary btn-lg' %>
+
+<% end %>

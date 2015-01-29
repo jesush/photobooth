@@ -1,0 +1,70 @@
+<div class="row">
+
+  <div class="col-xs-8 col-xs-offset-2">
+
+<%- model_class = Person -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Image</strong></dt>
+  <dd><img src=<%= "/serve_image/#{@person.image_file_name}" %>>
+</p></dd>
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @person.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @person.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dob) %>:</strong></dt>
+  <dd><%= @person.dob %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @person.email %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:phone_number) %>:</strong></dt>
+  <dd><%= @person.phone_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:preferred_contact_method) %>:</strong></dt>
+  <dd><%= @person.preferred_contact_method %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:practicing_country) %>:</strong></dt>
+  <dd><%= @person.practicing_country %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:medical_license_number) %>:</strong></dt>
+  <dd><%= @person.medical_license_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current_institution) %>:</strong></dt>
+  <dd><%= @person.current_institution %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current_office_address) %>:</strong></dt>
+  <dd><%= @person.current_office_address %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:medical_specialty) %>:</strong></dt>
+  <dd><%= @person.medical_specialty %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:medical_school) %>:</strong></dt>
+  <dd><%= @person.medical_school %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:medical_school_graduating_year) %>:</strong></dt>
+  <dd><%= @person.medical_school_graduating_year %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:hospital_residency) %>:</strong></dt>
+  <dd><%= @person.hospital_residency %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:residency_completion_date) %>:</strong></dt>
+  <dd><%= @person.residency_completion_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hospital_fellowship) %>:</strong></dt>
+  <dd><%= @person.hospital_fellowship %></dd>
+
+  <dt><strong><%= model_class.human_attribute_name(:fellowship_completion_year) %></strong></dt>
+  <dd><%= @person.fellowship_completion_year %></dd>
+  <dd><%= @person.image_file_name %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              people_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_person_path(@person), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              person_path(@person),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+
+            </div>
+          </div>

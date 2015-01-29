@@ -1,0 +1,80 @@
+<div class="row">
+
+  <div class="col-xs-8 col-xs-offset-2">
+<%- model_class = Person -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:first_name) %></th>
+      <th><%= model_class.human_attribute_name(:last_name) %></th>
+      <th><%= model_class.human_attribute_name(:dob) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:phone_number) %></th>
+      <th><%= model_class.human_attribute_name(:preferred_contact_method) %></th>
+      <th><%= model_class.human_attribute_name(:practicing_country) %></th>
+      <th><%= model_class.human_attribute_name(:medical_license_number) %></th>
+      <th><%= model_class.human_attribute_name(:current_institution) %></th>
+      <th><%= model_class.human_attribute_name(:current_office_address) %></th>
+      <th><%= model_class.human_attribute_name(:medical_specialty) %></th>
+      
+      <th><%= model_class.human_attribute_name(:medical_school) %></th>
+
+      <th><%= model_class.human_attribute_name(:medical_school_graduating_year) %></th>
+      
+      <th><%= model_class.human_attribute_name(:hospital_residency) %></th>
+      
+      <th><%= model_class.human_attribute_name(:residency_completion_date) %></th>
+      
+      <th><%= model_class.human_attribute_name(:hospital_fellowship) %></th>
+      
+      <th><%= model_class.human_attribute_name(:fellowship_completion_year) %></th>
+      
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= link_to person.id, person_path(person) %></td>
+        <td><%=  person.first_name %></td>
+        <td><%=  person.last_name %></td>
+        <td><%=  person.dob %></td>
+        <td><%=  person.email %></td>
+        <td><%=  person.phone_number %></td>
+        <td><%=  person.preferred_contact_method %></td>
+        <td><%=  person.practicing_country %></td>
+        <td><%=  person.medical_license_number %></td>
+        <td><%=  person.current_institution %></td>
+        <td><%=  person.current_office_address %></td>
+        <td><%=  person.medical_specialty %></td>
+        <td><%=  person.medical_school %></td>
+        <td><%=  person.medical_school_graduating_year %></td>
+        <td><%=  person.hospital_residency %></td>
+        <td><%=  person.residency_completion_date %></td>
+        <td><%=  person.hospital_fellowship %></td>
+        <td><%=  person.fellowship_completion_year %></td>
+        <td><%=l person.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_person_path(person), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      person_path(person),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_person_path,
+            :class => 'btn btn-primary' %>
+          </div>
+        </div>
